@@ -1,4 +1,5 @@
 import ORG from "../models/orgcreate.model.js";
+import { sendDetails } from "../utils/emailsender.js";
 import bcrypt from "bcrypt";
 
 export const signup = async (req, res, next) => {
@@ -20,12 +21,11 @@ export const signup = async (req, res, next) => {
       password: hashedpass,
     });
 
-    console.log(organization._id);
-    res
-      .status(201)
-      .json({
-        message: `The Institution have been successfully registered ${organization.name}`,
-      });
+    await sendDetails(email,name,password);
+
+    res.status(201).json({message:`Welcome to the Portal ${name}`})
+    
+    
   } catch (error) {
     next(error);
   }
