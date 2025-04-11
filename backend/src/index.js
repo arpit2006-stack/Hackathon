@@ -1,10 +1,10 @@
-import express from 'express';
-import { connectDB } from './lib/db.js';
-import orgRoutes from './routes/org.routes.js'
-import comRoutes from './routes/committee.route.js'
-import bodyParser from 'body-parser'
-import cors from 'cors';
-
+import express from "express";
+import { connectDB } from "./lib/db.js";
+import orgRoutes from "./routes/org.routes.js";
+import comRoutes from "./routes/committee.route.js";
+import nomineeRoutes from "./routes/nominee.route.js";
+import bodyParser from "body-parser";
+import cors from "cors";
 
 const app = express();
 
@@ -15,33 +15,30 @@ app.use(
   })
 );
 
-
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
-
 
 app.use(express.json()); // Replace body-parser
 app.use(express.urlencoded({ extended: true }));
 
+app.use("/api/organisation", orgRoutes);
 
+app.use("/api/candidate", nomineeRoutes);
 
-app.use("/api/organisation",orgRoutes);
+app.use("/api/committee", comRoutes);
 
-app.use("/api/committee",comRoutes);
-
-app.get("/",(req,res)=>{
-  res.json({message:"nsdfivnlafjvnafliv"})
-})
+app.get("/", (req, res) => {
+  res.json({ message: "nsdfivnlafjvnafliv" });
+});
 app.use((err, req, res, next) => {
-    console.log(err.stack);
-  
-    const StatusCode = err.statusCode || 500;
-    res.status(StatusCode).json({ message: err.message });
-  });
+  console.log(err.stack);
 
+  const StatusCode = err.statusCode || 500;
+  res.status(StatusCode).json({ message: err.message });
+});
 
-const PORT = process.env.PORT
- app.listen(PORT , ()=>{
-    console.log(`Server connected at ${PORT} `);
-    connectDB();
- })
+const PORT = process.env.PORT;
+app.listen(PORT, () => {
+  console.log(`Server connected at ${PORT} `);
+  connectDB();
+});
