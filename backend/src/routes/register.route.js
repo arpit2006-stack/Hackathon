@@ -1,4 +1,4 @@
-import { startNomination, createNominee } from "../controller/nominee.controller.js";
+import { startNomination, createNominee } from "../controller/register.controller.js";
 import express from 'express';
 
 const router = express.Router();

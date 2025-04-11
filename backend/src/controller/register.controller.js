@@ -1,5 +1,5 @@
 // controllers/nominee.controller.js
-import Nominee from "../models/nominee.model.js";
+import Nominee from "../models/register.model.js";
 import { sendVerificationOTP, verifyOTP } from "../utils/opsend.js";
 
 // Step 1: Receive initial details and send OTP

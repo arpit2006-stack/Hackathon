@@ -2,7 +2,7 @@ import express from "express";
 import { connectDB } from "./lib/db.js";
 import orgRoutes from "./routes/org.routes.js";
 import comRoutes from "./routes/committee.route.js";
-import nomineeRoutes from "./routes/nominee.route.js";
+import nomineeRoutes from "./routes/register.route.js";
 import bodyParser from "body-parser";
 import cors from "cors";
 
