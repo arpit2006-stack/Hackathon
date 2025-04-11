@@ -20,7 +20,7 @@ const SignupForm = () => {
     setIsLoading(true);
     
     try {
-      const res = await axios.post('/api/organization/signup', formData);
+      const res = await axios.post('/api/organisation/signup', formData);
       setMessage({ 
         text: `Success! Check ${formData.email} for credentials`, 
         type: 'success' 
@@ -168,10 +168,7 @@ const SignupForm = () => {
           {/* Footer */}
           <div className="px-8 py-6 bg-white/5 border-t border-white/10 text-center">
             <p className="text-sm text-white/60">
-              Already registered?{' '}
-              <a href="#" className="text-purple-300 hover:text-white font-medium transition-colors">
-                Sign in here
-              </a>
+             ASB CREATIONS LIMITED
             </p>
           </div>
         </div>

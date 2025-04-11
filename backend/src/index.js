@@ -1,6 +1,7 @@
 import express from 'express';
 import { connectDB } from './lib/db.js';
 import orgRoutes from './routes/org.routes.js'
+import comRoutes from './routes/committee.route.js'
 import bodyParser from 'body-parser'
 import cors from 'cors';
 
@@ -15,16 +16,18 @@ app.use(
 );
 
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: true }));
 
 
-// app.use(express.json()); // Replace body-parser
-// app.use(express.urlencoded({ extended: true }));
+app.use(express.json()); // Replace body-parser
+app.use(express.urlencoded({ extended: true }));
 
 
 
-app.use("/ ",orgRoutes);
+app.use("/api/organisation",orgRoutes);
+
+app.use("/api/committee",comRoutes);
 
 app.get("/",(req,res)=>{
   res.json({message:"nsdfivnlafjvnafliv"})

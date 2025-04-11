@@ -13,7 +13,7 @@ const transport = nodemailer.createTransport({
   export const sendDetails = async (email, username, password) => {
     try {
       const mailOptions = {
-        from: 'Election Portal <your@gmail.com>',
+        from: 'Election Portal <arpitsb408@gmail.com>',
         to: email,
         subject: 'Your Organization Account Credentials',
         text: `Username: ${username}\nPassword: ${password}`,
