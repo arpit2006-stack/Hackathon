@@ -9,7 +9,7 @@ export const Application = async (req, res, next) => {
 
   try {
     // Validate required fields
-    if (!name || !email || !contactNo || !post || !agenda ||!candidateID) {
+    if (!name || !email || !contactNo || !post || !agenda ||!registrationId) {
       throw new Error("Please fill out all the details");
     }
 

@@ -4,6 +4,8 @@ import CommitteeLogin from './components/committeelogin'
 import DashboardLayout from './components/comdash'
 import NomineeForm from './components/nominee'
 import NominationForm from './components/application'
+import CandidateApproval from './components/approval'
+
 
 function App() {
   
@@ -18,6 +20,7 @@ function App() {
           <Route path='/committe/dashboard' element={<DashboardLayout/>} />
           <Route path='/candidate' element={<NomineeForm/>} />
           <Route path='/apply' element={<NominationForm/>} />
+          <Route path='/committee/nominees' element={<CandidateApproval/>} />
 
       </Routes>
       </main>

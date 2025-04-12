@@ -7,6 +7,7 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import path from "path";
 import applyRoute from "./routes/nominee.route.js";
+import approveRoutes from './routes/approval.route.js'
 
 const app = express();
 
@@ -36,6 +37,7 @@ app.use("/api/committee", comRoutes);
 
 app.use("/api/application", applyRoute);
 
+app.use("/api/candidates",approveRoutes);
 app.get("/", (req, res) => {
   res.json({ message: "nsdfivnlafjvnafliv" });
 });
