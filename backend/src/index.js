@@ -5,20 +5,20 @@ import comRoutes from "./routes/committee.route.js";
 import nomineeRoutes from "./routes/register.route.js";
 import bodyParser from "body-parser";
 import cors from "cors";
-import path from 'path'
+import path from "path";
+import applyRoute from "./routes/nominee.route.js";
 
 const app = express();
 
-app.use(
-  cors({
-    origin: "http://localhost:5173",
-    credentials: true,
-  })
-);
+app.use(cors(
+  {
+  origin: "http://localhost:5173",
+  credentials: true,
+}
+));
 
 
 const rootPath = path.join(process.env.UPLOAD_FILE_PATH, "idproof");
-
 
 app.use("/inventory", express.static(rootPath));
 
@@ -33,6 +33,8 @@ app.use("/api/organisation", orgRoutes);
 app.use("/api/candidate", nomineeRoutes);
 
 app.use("/api/committee", comRoutes);
+
+app.use("/api/application", applyRoute);
 
 app.get("/", (req, res) => {
   res.json({ message: "nsdfivnlafjvnafliv" });
