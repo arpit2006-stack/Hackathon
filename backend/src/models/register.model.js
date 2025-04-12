@@ -1,28 +1,22 @@
 import mongoose from "mongoose";
 
+// register.model.js
 const NomSchema = new mongoose.Schema(
   {
-    email: {
-      type: String,
-      require: true,
+    email: { type: String, required: true },
+    name: { type: String, required: true },
+    age: { type: Number, required: true },
+    // post: { type: String, required: true },
+    registrationId: { type: String, unique: true , sparse: true , default:undefined },
+    idProof: {
+      url: String,
+      publicId: String,
     },
-    name: {
-      type: String,
-      require: true,
+    tempIdProof: {
+      // Temporary storage during OTP process
+      url: String,
+      publicId: String,
     },
-    age: {
-      type: String,
-      require: true,
-    },
-    post: {
-      type: String,
-      require: true,
-    },
-    status: { 
-      type: String, 
-      enum: ['pending-verification', 'verified', 'rejected'],
-      default: 'pending-verification'
-    }
   },
   { timestamps: true }
 );

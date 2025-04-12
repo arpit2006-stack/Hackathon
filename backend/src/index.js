@@ -5,6 +5,7 @@ import comRoutes from "./routes/committee.route.js";
 import nomineeRoutes from "./routes/register.route.js";
 import bodyParser from "body-parser";
 import cors from "cors";
+import path from 'path'
 
 const app = express();
 
@@ -15,11 +16,17 @@ app.use(
   })
 );
 
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(express.json()); // Replace body-parser
-app.use(express.urlencoded({ extended: true }));
+const rootPath = path.join(process.env.UPLOAD_FILE_PATH, "idproof");
+
+
+app.use("/inventory", express.static(rootPath));
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// app.use(express.json()); // Replace body-parser
+// app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/organisation", orgRoutes);
 

@@ -1,12 +1,24 @@
-import { startNomination, createNominee } from "../controller/register.controller.js";
 import express from 'express';
+import multer from 'multer';
+import { startNomination, createNominee } from '../controller/register.controller.js';
+
+const upload = multer({ 
+  dest: 'uploads/',
+  limits: {
+    fileSize: 2 * 1024 * 1024 // 2MB limit
+  },
+  fileFilter: (req, file, cb) => {
+    if (file.mimetype.startsWith('image/')) {
+      cb(null, true);
+    } else {
+      cb(new Error('Only image files are allowed!'), false);
+    }
+  }
+});
 
 const router = express.Router();
 
-// Step 1: Initiate nomination and send OTP
-router.post("/nominate/start", startNomination);
-
-// Step 2: Verify OTP and complete nomination
-router.post("/nominate/complete", createNominee);
+router.post('/nominate/start', upload.single('positionImage'), startNomination);
+router.post('/nominate/create', createNominee);
 
 export default router;
