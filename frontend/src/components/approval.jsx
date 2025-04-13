@@ -63,7 +63,7 @@ const ApprovalDashboard = () => {
   }, [success, error]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-amber-50 to-orange-50 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 to-blue-900 p-6">
       <div className="max-w-6xl mx-auto">
         <AnimatePresence>
           {error && (
@@ -71,12 +71,12 @@ const ApprovalDashboard = () => {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
-              className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-6 rounded-lg flex items-start gap-3"
+              className="bg-rose-500/20 border-l-4 border-rose-400 text-white p-4 mb-6 rounded-lg flex items-start gap-3 backdrop-blur-sm"
             >
-              <FiAlertCircle className="flex-shrink-0 mt-0.5 text-red-500" />
+              <FiAlertCircle className="flex-shrink-0 mt-0.5 text-rose-300" />
               <div>
                 <p className="font-medium">{error.title}</p>
-                <p className="text-sm">{error.message}</p>
+                <p className="text-sm text-white/80">{error.message}</p>
               </div>
             </motion.div>
           )}
@@ -86,12 +86,12 @@ const ApprovalDashboard = () => {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
-              className="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-6 rounded-lg flex items-start gap-3"
+              className="bg-emerald-500/20 border-l-4 border-emerald-400 text-white p-4 mb-6 rounded-lg flex items-start gap-3 backdrop-blur-sm"
             >
-              <FiCheck className="flex-shrink-0 mt-0.5 text-green-500" />
+              <FiCheck className="flex-shrink-0 mt-0.5 text-emerald-300" />
               <div>
                 <p className="font-medium">{success.title}</p>
-                <p className="text-sm">{success.message}</p>
+                <p className="text-sm text-white/80">{success.message}</p>
               </div>
             </motion.div>
           )}
@@ -103,30 +103,30 @@ const ApprovalDashboard = () => {
           transition={{ duration: 0.5 }}
           className="mb-8 text-center"
         >
-          <h1 className="text-4xl font-bold text-amber-900 mb-2 font-serif">
+          <h1 className="text-4xl font-bold text-teal-300 mb-2 font-serif">
             Candidate Approval
           </h1>
-          <p className="text-amber-700 text-lg">
+          <p className="text-white/80 text-lg">
             Review and approve candidate applications
           </p>
         </motion.div>
 
         <motion.div
           whileHover={{ scale: 1.01 }}
-          className="bg-white rounded-xl shadow-lg p-6 mb-8 border border-amber-200"
+          className="bg-white/5 rounded-xl shadow-lg p-6 mb-8 border border-teal-400/20 backdrop-blur-sm"
         >
           <div className="flex flex-col md:flex-row gap-4 items-center">
             <div className="relative flex-1">
               <select
                 value={post}
                 onChange={(e) => setPost(e.target.value)}
-                className="w-full px-4 py-3 pr-10 rounded-lg border border-amber-300 focus:ring-2 focus:ring-amber-400 focus:border-amber-500 appearance-none bg-amber-50 text-amber-900 font-medium"
+                className="w-full px-4 py-3 pr-10 rounded-lg border border-teal-400/30 focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500 appearance-none bg-slate-800 text-white font-medium"
               >
                 {['President', 'Vice President', 'Secretary', 'Treasurer'].map((p) => (
                   <option key={p} value={p}>{p}</option>
                 ))}
               </select>
-              <FiAward className="absolute right-3 top-3.5 text-amber-500" />
+              <FiAward className="absolute right-3 top-3.5 text-teal-300" />
             </div>
           </div>
         </motion.div>
@@ -136,16 +136,16 @@ const ApprovalDashboard = () => {
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
-              className="rounded-full h-12 w-12 border-t-2 border-b-2 border-amber-500"
+              className="rounded-full h-12 w-12 border-t-2 border-b-2 border-teal-400"
             />
           </div>
         ) : candidates.length === 0 ? (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="text-center py-12 bg-white rounded-xl shadow-lg border border-amber-100"
+            className="text-center py-12 bg-white/5 rounded-xl shadow-lg border border-teal-400/20 backdrop-blur-sm"
           >
-            <p className="text-amber-600 text-xl font-medium">
+            <p className="text-teal-300 text-xl font-medium">
               No candidates found for {post}
             </p>
           </motion.div>
@@ -160,29 +160,29 @@ const ApprovalDashboard = () => {
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.3 }}
                   whileHover={{ y: -5 }}
-                  className="bg-white rounded-xl shadow-lg overflow-hidden border border-amber-100 hover:shadow-xl transition-shadow"
+                  className="bg-white/5 rounded-xl shadow-lg overflow-hidden border border-teal-400/20 hover:shadow-xl transition-all backdrop-blur-sm"
                 >
                   <div className="p-6">
                     <div className="flex items-start space-x-4">
                       <motion.div 
                         whileHover={{ rotate: 10 }}
-                        className="bg-amber-100 p-3 rounded-full"
+                        className="bg-gradient-to-br from-teal-500/20 to-blue-500/20 p-3 rounded-full"
                       >
-                        <FiUser className="text-amber-600 text-xl" />
+                        <FiUser className="text-teal-300 text-xl" />
                       </motion.div>
                       <div>
-                        <h3 className="font-bold text-lg text-amber-900">{c.name}</h3>
-                        <p className="text-amber-600 text-sm font-medium">{c.post}</p>
+                        <h3 className="font-bold text-lg text-white">{c.name}</h3>
+                        <p className="text-teal-300 text-sm font-medium">{c.post}</p>
                       </div>
                     </div>
 
                     <div className="mt-4 space-y-3">
-                      <div className="flex items-center text-amber-800">
-                        <FiMail className="mr-2 text-amber-500" />
+                      <div className="flex items-center text-white/90">
+                        <FiMail className="mr-2 text-teal-300" />
                         <span className="truncate">{c.email}</span>
                       </div>
-                      <div className="flex items-center text-amber-800">
-                        <FiPhone className="mr-2 text-amber-500" />
+                      <div className="flex items-center text-white/90">
+                        <FiPhone className="mr-2 text-teal-300" />
                         {c.contactNo}
                       </div>
                     </div>
@@ -197,7 +197,7 @@ const ApprovalDashboard = () => {
                           <button
                             onClick={() => handleStatus(c._id, 'Approved')}
                             disabled={updatingId === c._id}
-                            className={`px-4 py-2 bg-gradient-to-r from-green-400 to-green-500 text-white rounded-lg hover:from-green-500 hover:to-green-600 transition-all flex items-center gap-2 shadow-md hover:shadow-lg ${
+                            className={`px-4 py-2 bg-gradient-to-r from-emerald-500 to-teal-600 text-white rounded-lg hover:from-emerald-400 hover:to-teal-500 transition-all flex items-center gap-2 shadow-md hover:shadow-lg ${
                               updatingId === c._id ? 'opacity-50 cursor-not-allowed' : ''
                             }`}
                           >
@@ -214,7 +214,7 @@ const ApprovalDashboard = () => {
                           <button
                             onClick={() => handleStatus(c._id, 'Rejected')}
                             disabled={updatingId === c._id}
-                            className={`px-4 py-2 bg-gradient-to-r from-red-400 to-red-500 text-white rounded-lg hover:from-red-500 hover:to-red-600 transition-all flex items-center gap-2 shadow-md hover:shadow-lg ${
+                            className={`px-4 py-2 bg-gradient-to-r from-rose-500 to-pink-600 text-white rounded-lg hover:from-rose-400 hover:to-pink-500 transition-all flex items-center gap-2 shadow-md hover:shadow-lg ${
                               updatingId === c._id ? 'opacity-50 cursor-not-allowed' : ''
                             }`}
                           >
@@ -233,8 +233,8 @@ const ApprovalDashboard = () => {
                         <motion.span 
                           className={`inline-block px-3 py-1 rounded-full text-sm font-medium ${
                             c.status === 'Approved' 
-                              ? 'bg-green-100 text-green-800' 
-                              : 'bg-red-100 text-red-800'
+                              ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-400/30' 
+                              : 'bg-rose-500/20 text-rose-300 border border-rose-400/30'
                           }`}
                           initial={{ scale: 0.9 }}
                           animate={{ scale: 1 }}
