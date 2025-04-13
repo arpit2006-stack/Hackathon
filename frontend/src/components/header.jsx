@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -42,8 +43,9 @@ const Header = () => {
             >
               How It Works
             </motion.a>
-            <motion.a
-              href="#login"
+            <NavLink to="/login">
+            <motion
+              // href="#login"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
@@ -54,7 +56,8 @@ const Header = () => {
               className="bg-grey/10 text-white font-semibold text-base py-1.5 px-4 rounded-lg shadow-md hover:bg-white/20 transition-all border border-teal-400/30 backdrop-blur-sm"
             >
               Login
-            </motion.a>
+            </motion>
+            </NavLink>
           </div>
         </div>
       </div>

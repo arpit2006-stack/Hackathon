@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import axios from "../lib/axios.jsx";
+import Header from "./header.jsx";
 import {
   FiUpload,
   FiUser,
@@ -90,6 +91,8 @@ const NominationForm = () => {
   };
 
   return (
+    <div>
+      <Header />
     <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-purple-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-10">
@@ -375,6 +378,7 @@ const NominationForm = () => {
           </form>
         )}
       </div>
+    </div>
     </div>
   );
 };

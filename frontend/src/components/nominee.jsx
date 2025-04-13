@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import axios from '../lib/axios.jsx';
-
+import Header from './header.jsx';
 const NomineeForm = () => {
   const [formData, setFormData] = useState({
     email: '',
@@ -112,6 +112,8 @@ const NomineeForm = () => {
   };
 
   return (
+    <div>
+      <Header />
     <div className="min-h-screen bg-gradient-to-br from-cyan-100 to-pink-50 flex items-center justify-center p-4">
       <div className="w-full max-w-2xl bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl p-8">
         <div className="text-center mb-8">
@@ -331,6 +333,7 @@ const NomineeForm = () => {
           </div>
         )}
       </div>
+    </div>
     </div>
   );
 };

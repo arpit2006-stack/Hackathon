@@ -8,6 +8,7 @@ import cors from "cors";
 import path from "path";
 import applyRoute from "./routes/nominee.route.js";
 import approveRoutes from './routes/approval.route.js'
+import inquiryRoutes from './routes/inquiry.route.js'
 
 const app = express();
 
@@ -38,6 +39,11 @@ app.use("/api/committee", comRoutes);
 app.use("/api/application", applyRoute);
 
 app.use("/api/candidates",approveRoutes);
+
+
+app.use("/api",inquiryRoutes)
+
+
 app.get("/", (req, res) => {
   res.json({ message: "nsdfivnlafjvnafliv" });
 });

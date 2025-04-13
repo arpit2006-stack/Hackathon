@@ -7,6 +7,7 @@ import NominationForm from './components/application'
 import CandidateApproval from './components/approval'
 import Header from './components/header'
 import HomePage from './components/home'
+import LetterForm from './components/inquiry'
 
 
 function App() {
@@ -16,7 +17,7 @@ function App() {
     <>
     <div>
       <header>
-        <Header />
+        
       </header>
     <main>
       <Routes>
@@ -27,6 +28,7 @@ function App() {
           <Route path='/candidate' element={<NomineeForm/>} />
           <Route path='/apply' element={<NominationForm/>} />
           <Route path='/committee/nominees' element={<CandidateApproval/>} />
+          <Route path='/inquiry' element={<LetterForm/>} />
 
       </Routes>
       </main>
