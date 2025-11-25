@@ -12,12 +12,12 @@ export const sendRegistrationEmail = (toEmail, name, registrationId) => {
   const mailOptions = {
     from: 'Election System <elections@example.com>',
     to: toEmail,
-    subject: 'Your Candidate Registration ID',
+    subject: 'Your Registration ID',
     html: `
       <div style="font-family: Arial, sans-serif; padding: 20px;">
-        <h2 style="color: #1a365d;">Candidate Registration Confirmation</h2>
+        <h2 style="color: #1a365d;">Registration Confirmation</h2>
         <p>Hello ${name},</p>
-        <p>Your candidate registration was successful!</p>
+        <p>Your registration was successful!</p>
         
         <div style="background: #f7fafc; padding: 15px; border-radius: 5px; margin: 20px 0;">
           <h3 style="color: #2d3748; margin: 0;">Registration ID:</h3>

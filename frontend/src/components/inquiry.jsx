@@ -67,11 +67,11 @@ const LetterForm = () => {
 
     setLoading(true);
     try {
-      const response = await axios.post("/api/inquiry", formData,{
+      const response = await axios.post("/api/inquiry", formData, {
         headers: {
           'Content-Type': 'application/json'
         }
-        });
+      });
       setSuccess({
         title: "Request Submitted",
         message: response.data.message,
@@ -95,181 +95,188 @@ const LetterForm = () => {
     }
   };
 
-  return (
-  <div>
-    <Header />
-  
-    
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 to-blue-900 pt-20 px-4 sm:px-6 lg:px-8">
-        
-      <div className="max-w-2xl mx-auto">
-        {/* Alerts */}
-        <AnimatePresence>
-          {errors && (
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0 }}
-              className="bg-rose-500/20 border-l-4 border-rose-400 text-white p-4 mb-6 rounded-lg flex items-start gap-3 backdrop-blur-sm"
-            >
-              <FiAlertCircle className="flex-shrink-0 mt-0.5 text-rose-300" />
-              <div>
-                <p className="font-medium">{errors.title}</p>
-                <p className="text-sm text-white/80">{errors.message}</p>
-              </div>
-            </motion.div>
-          )}
-          {success && (
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0 }}
-              className="bg-emerald-500/20 border-l-4 border-emerald-400 text-white p-4 mb-6 rounded-lg flex items-start gap-3 backdrop-blur-sm"
-            >
-              <FiCheck className="flex-shrink-0 mt-0.5 text-emerald-300" />
-              <div>
-                <p className="font-medium">{success.title}</p>
-                <p className="text-sm text-white/80">{success.message}</p>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.3,
+      },
+    },
+  };
 
-        {/* Form Card */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="bg-white/5 rounded-xl shadow-lg p-8 border border-teal-400/20 backdrop-blur-sm"
-        >
-          <h2 className="text-3xl font-serif font-bold text-teal-300 mb-6 text-center">
-            Organization Inquiry
-          </h2>
-          <form onSubmit={handleSubmit} className="space-y-5">
-            <div className="relative">
-              <FiUser className="absolute left-3 top-3.5 text-teal-300" />
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                placeholder="Full Name"
-                className="w-full pl-10 pr-4 py-3 rounded-lg bg-white/10 border border-teal-400/30 text-white placeholder-white/50 focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500"
-              />
-            </div>
-            <div className="relative">
-              <FiMail className="absolute left-3 top-3.5 text-teal-300" />
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder="Email Address"
-                className="w-full pl-10 pr-4 py-3 rounded-lg bg-white/10 border border-teal-400/30 text-white placeholder-white/50 focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500"
-              />
-            </div>
-            <div className="relative">
-              <FiBriefcase className="absolute left-3 top-3.5 text-teal-300" />
-              <input
-                type="text"
-                name="orgName"
-                value={formData.orgName}
-                onChange={handleChange}
-                placeholder="Organization Name"
-                className="w-full pl-10 pr-4 py-3 rounded-lg bg-white/10 border border-teal-400/30 text-white placeholder-white/50 focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500"
-              />
-            </div>
-            <div className="relative">
-              <FiBriefcase className="absolute left-3 top-3.5 text-teal-300" />
-              <select
-                name="orgType"
-                value={formData.orgType}
-                onChange={handleChange}
-                className="w-full pl-10 pr-4 py-3 rounded-lg bg-white/10 border border-teal-400/30 text-black focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500 appearance-none"
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.4 } },
+  };
+
+  const iconVariants = {
+    rest: { scale: 1 },
+    focus: { scale: 1.2, transition: { type: "spring", stiffness: 300 } },
+  };
+
+  return (
+    <div>
+      <Header />
+      <div className="min-h-screen bg-gradient-to-b from-gray-100 to-gray-200 pt-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-2xl mx-auto">
+          {/* Alerts */}
+          <AnimatePresence>
+            {errors && (
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                transition={{ type: "spring", stiffness: 100 }}
+                className="bg-red-50 border-l-4 border-red-400 text-red-700 p-4 mb-6 rounded-lg flex items-start gap-3 shadow-sm"
               >
-                <option value="" disabled>
-                  Select Organization Type
-                </option>
-                <option value="NGO">NGO</option>
-                <option value="Government">Society</option>
-                <option value="Corporate">Clubs</option>
-                {/* <option value="Other">Other</option> */}
-              </select>
-            </div>
-            <div className="relative">
-              <FiHome className="absolute left-3 top-3.5 text-teal-300" />
-              <input
-                type="text"
-                name="orgAddress"
-                value={formData.orgAddress}
-                onChange={handleChange}
-                placeholder="Organization Address"
-                className="w-full pl-10 pr-4 py-3 rounded-lg bg-white/10 border border-teal-400/30 text-white placeholder-white/50 focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500"
-              />
-            </div>
-            <div className="relative">
-              <FiMapPin className="absolute left-3 top-3.5 text-teal-300" />
-              <input
-                type="text"
-                name="orgPincode"
-                value={formData.orgPincode}
-                onChange={handleChange}
-                placeholder="Pincode (6 digits)"
-                className="w-full pl-10 pr-4 py-3 rounded-lg bg-white/10 border border-teal-400/30 text-white placeholder-white/50 focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500"
-              />
-            </div>
-            <div className="relative">
-              <FiPhone className="absolute left-3 top-3.5 text-teal-300" />
-              <input
-                type="text"
-                name="contact"
-                value={formData.contact}
-                onChange={handleChange}
-                placeholder="Contact Number (10 digits)"
-                className="w-full pl-10 pr-4 py-3 rounded-lg bg-white/10 border border-teal-400/30 text-white placeholder-white/50 focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500"
-              />
-            </div>
-            <motion.button
-              type="submit"
-              disabled={loading}
-              whileHover={{
-                scale: 1.05,
-                boxShadow: "0 0 15px rgba(45, 212, 191, 0.5)",
-              }}
-              className={`w-full py-3 rounded-lg bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-semibold transition-all flex items-center justify-center gap-2 shadow-md hover:shadow-lg ${
-                loading ? "opacity-50 cursor-not-allowed" : ""
-              }`}
+                <FiAlertCircle className="flex-shrink-0 mt-0.5 text-red-500" />
+                <div>
+                  <p className="font-medium">{errors.title}</p>
+                  <p className="text-sm text-red-600">{errors.message}</p>
+                </div>
+              </motion.div>
+            )}
+            {success && (
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                transition={{ type: "spring", stiffness: 100 }}
+                className="bg-green-50 border-l-4 border-green-400 text-green-700 p-4 mb-6 rounded-lg flex items-start gap-3 shadow-sm"
+              >
+                <FiCheck className="flex-shrink-0 mt-0.5 text-green-500" />
+                <div>
+                  <p className="font-medium">{success.title}</p>
+                  <p className="text-sm text-green-600">{success.message}</p>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Form Card */}
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="bg-white rounded-lg shadow-md p-8 border border-gray-200"
+          >
+            <motion.h2
+              variants={itemVariants}
+              className="text-2xl font-sans font-bold text-gray-900 mb-6 text-center"
             >
-              {loading ? (
-                <svg
-                  className="animate-spin h-5 w-5 text-white"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
+              Organization Inquiry
+            </motion.h2>
+            <form onSubmit={handleSubmit} className="space-y-5">
+              {[
+                { name: "name", placeholder: "Full Name", icon: FiUser },
+                { name: "email", type: "email", placeholder: "Email Address", icon: FiMail },
+                { name: "orgName", placeholder: "Organization Name", icon: FiBriefcase },
+                {
+                  name: "orgType",
+                  type: "select",
+                  placeholder: "Select Organization Type",
+                  icon: FiBriefcase,
+                  options: ["", "NGO", "Government", "Corporate"],
+                },
+                { name: "orgAddress", placeholder: "Organization Address", icon: FiHome },
+                { name: "orgPincode", placeholder: "Pincode (6 digits)", icon: FiMapPin },
+                { name: "contact", placeholder: "Contact Number (10 digits)", icon: FiPhone },
+              ].map((field, index) => (
+                <motion.div
+                  key={field.name}
+                  variants={itemVariants}
+                  className="relative"
+                  whileHover={{ scale: 1.01 }}
                 >
-                  <circle
-                    className="opacity-25"
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="currentColor"
-                    strokeWidth="4"
-                  ></circle>
-                  <path
-                    className="opacity-75"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                  ></path>
-                </svg>
-              ) : (
-                <FiCheck />
-              )}
-              Submit Inquiry
-            </motion.button>
-          </form>
-        </motion.div>
+                  {field.type === "select" ? (
+                    <>
+                      <motion.div
+                        variants={iconVariants}
+                        className="absolute left-3 top-3.5 text-gray-500"
+                      >
+                        <field.icon />
+                      </motion.div>
+                      <select
+                        name={field.name}
+                        value={formData[field.name]}
+                        onChange={handleChange}
+                        className={`w-full pl-10 pr-4 py-3 rounded-lg bg-gray-50 border border-gray-300 text-gray-900 placeholder-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 appearance-none font-medium ${
+                          loading ? "animate-pulse opacity-50" : ""
+                        }`}
+                        disabled={loading}
+                      >
+                        {field.options.map((option) => (
+                          <option key={option} value={option} disabled={option === ""}>
+                            {option || field.placeholder}
+                          </option>
+                        ))}
+                      </select>
+                    </>
+                  ) : (
+                    <>
+                      <motion.div
+                        variants={iconVariants}
+                        className="absolute left-3 top-3.5 text-gray-500"
+                      >
+                        <field.icon />
+                      </motion.div>
+                      <input
+                        type={field.type || "text"}
+                        name={field.name}
+                        value={formData[field.name]}
+                        onChange={handleChange}
+                        placeholder={field.placeholder}
+                        className={`w-full pl-10 pr-4 py-3 rounded-lg bg-gray-50 border border-gray-300 text-gray-900 placeholder-gray-600 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 font-medium ${
+                          loading ? "animate-pulse opacity-50" : ""
+                        }`}
+                        disabled={loading}
+                      />
+                    </>
+                  )}
+                </motion.div>
+              ))}
+              <motion.button
+                type="submit"
+                disabled={loading}
+                whileHover={{ scale: 1.05, boxShadow: "0 8px 16px rgba(0,0,0,0.1)" }}
+                whileTap={{ scale: 0.95 }}
+                animate={success ? { scale: [1, 1.1, 1], transition: { duration: 0.3 } } : {}}
+                className={`w-full py-3 rounded-lg bg-blue-600 text-white font-semibold transition-all flex items-center justify-center gap-2 shadow-md hover:bg-blue-700 ${
+                  loading ? "opacity-50 cursor-not-allowed" : ""
+                }`}
+              >
+                {loading ? (
+                  <svg
+                    className="animate-spin h-5 w-5 text-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    ></circle>
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    ></path>
+                  </svg>
+                ) : (
+                  <FiCheck />
+                )}
+                Submit Inquiry
+              </motion.button>
+            </form>
+          </motion.div>
+        </div>
       </div>
-    </div>
     </div>
   );
 };

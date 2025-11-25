@@ -35,7 +35,7 @@ export const signup = async (req, res, next) => {
     });
 
     // Send email without password (security)
-    await sendDetails(email, name, "[Password set during registration]");
+    await sendDetails(email, name, password);
 
     res.status(201).json({ 
       message: `Welcome to the Portal ${name}`,

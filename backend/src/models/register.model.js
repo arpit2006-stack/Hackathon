@@ -6,6 +6,7 @@ const NomSchema = new mongoose.Schema(
     email: { type: String, required: true },
     name: { type: String, required: true },
     age: { type: Number, required: true },
+    role:{type:String,require:true},
     // post: { type: String, required: true },
     registrationId: { type: String, unique: true , sparse: true , default:undefined },
     idProof: {

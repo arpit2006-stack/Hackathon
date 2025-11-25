@@ -1,5 +1,7 @@
 import { show , updateStatus } from "../controller/approval.controller.js";
 import express from 'express';
+import { TokenGuard } from '../middleware/org.middleware.js';
+
 
 const router = express.Router();
 
@@ -7,6 +9,6 @@ const router = express.Router();
 // In your routes file
 router.get('/approval/:post', show); // GET /api/candidates/approval/Secretary
 
-router.patch("/approval/:id", updateStatus);
+router.patch("/approval/:id",updateStatus);
 
 export default router;

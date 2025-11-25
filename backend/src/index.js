@@ -7,18 +7,18 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import path from "path";
 import applyRoute from "./routes/nominee.route.js";
-import approveRoutes from './routes/approval.route.js'
-import inquiryRoutes from './routes/inquiry.route.js'
+import approveRoutes from "./routes/approval.route.js";
+import inquiryRoutes from "./routes/inquiry.route.js";
+import peopleRoute from "./routes/people.route.js";
 
 const app = express();
 
-app.use(cors(
-  {
-  origin: "http://localhost:5173",
-  credentials: true,
-}
-));
-
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
 
 const rootPath = path.join(process.env.UPLOAD_FILE_PATH, "idproof");
 
@@ -38,11 +38,11 @@ app.use("/api/committee", comRoutes);
 
 app.use("/api/application", applyRoute);
 
-app.use("/api/candidates",approveRoutes);
+app.use("/api/candidates", approveRoutes);
 
+app.use("/api/people", peopleRoute);
 
-app.use("/api",inquiryRoutes)
-
+app.use("/api", inquiryRoutes);
 
 app.get("/", (req, res) => {
   res.json({ message: "nsdfivnlafjvnafliv" });

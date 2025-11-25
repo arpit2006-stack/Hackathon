@@ -25,7 +25,7 @@ function App() {
           <Route path="/create" element={<SignupForm/>} />
           <Route path='/login' element={<CommitteeLogin/>} />
           <Route path='/committe/dashboard' element={<DashboardLayout/>} />
-          <Route path='/candidate' element={<NomineeForm/>} />
+          <Route path='/register' element={<NomineeForm/>} />
           <Route path='/apply' element={<NominationForm/>} />
           <Route path='/committee/nominees' element={<CandidateApproval/>} />
           <Route path='/inquiry' element={<LetterForm/>} />
