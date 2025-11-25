@@ -2,7 +2,7 @@ import axios from "axios"
 
 
 const axiosInstance = axios.create({
-    baseURL: "http://localhost:4700",
+    baseURL: "https://saarthi-backend.onrender.com",
     withCredentials: true,
 })
 
